@@ -21,4 +21,8 @@
     <ProjectReference Include="..\..\shared\Swizzer.Shared\Swizzer.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="CQRS\Queries\" />
+  </ItemGroup>
+
 </Project>

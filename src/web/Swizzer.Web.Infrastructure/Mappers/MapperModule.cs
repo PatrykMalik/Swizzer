@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Autofac;
+using AutoMapper;
 
 namespace Swizzer.Web.Infrastructure.Mappers
 {
@@ -12,7 +13,7 @@ namespace Swizzer.Web.Infrastructure.Mappers
             var mapper = AutoMapperConfiguration.Initialize();
 
             builder.RegisterInstance(mapper)
-                .AsSelf()
+                .As<IMapper>()
                 .SingleInstance();
 
             builder.RegisterType<SwizzerMapper>()
