@@ -3,6 +3,7 @@ using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Swizzer.Web.Infrastructure.Extensions;
 using Swizzer.Web.Infrastructure.Framework.Caching;
+using Swizzer.Web.Infrastructure.Framework.Security;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -32,7 +33,17 @@ namespace Swizzer.Web.Infrastructure.Framework
 
             builder.RegisterType<CacheService>()
                 .As<ICacheService>()
-                .SingleInstance(); 
+                .SingleInstance();
+
+            var securitySettings = _configuration.GetSettings<SecuritySettings>();
+
+            builder.RegisterInstance(securitySettings)
+                .AsSelf()
+                .SingleInstance();
+
+            builder.RegisterType<SecurityService>()
+                .As<ISecurityService>()
+                .InstancePerLifetimeScope();
 
             base.Load(builder);
         }
